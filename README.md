@@ -77,10 +77,10 @@ Pythia O4 相較其 baseline 約 **53.05×**。實驗以 20 組 WikiText-103 固
 
 | 階段 | 執行設備 | 建置內容 | 詳細教學 |
 | --- | --- | --- | --- |
-| **Phase 1** | VirtualBox / x86 Ubuntu | 工具、Python、Git LFS、ONNX、TVM (Kiwipedia) 和 Host 環境變數 | [compile_tvm.md](docs/compile_tvm.md) |
-| **Phase 2A** | x86 Ubuntu | RISC-V GNU Linux Toolchain、sysroot、QEMU 正確性驗證 | [compile_riscv_toolchain.md](docs/compile_riscv_toolchain.md) |
-| **Phase 2B** | x86 Ubuntu | Kiwipedia Runtime／Codegen、目標 LLVM triple、`fcompile`、三個 RISC-V `.so` | [set_up_bananapi_runtime_and_codegen.md](docs/set_up_bananapi_runtime_and_codegen.md) |
-| **Phase 3** | Banana Pi BPI-F3 | `rsync`、板端 TVM Runtime、RVV MatMul `.so`、Processor、音訊推論 | [banana_pi_deployment.md](docs/banana_pi_deployment.md) |
+| **Phase 1** | VirtualBox / x86 Ubuntu | 工具、Python、Git LFS、ONNX、TVM (Kiwipedia) 和 Host 環境變數 | [compile_tvm.md](compile_tvm.md) |
+| **Phase 2A** | x86 Ubuntu | RISC-V GNU Linux Toolchain、sysroot、QEMU 正確性驗證 | [compile_riscv_toolchain.md](compile_riscv_toolchain.md) |
+| **Phase 2B** | x86 Ubuntu | Kiwipedia Runtime／Codegen、目標 LLVM triple、`fcompile`、三個 RISC-V `.so` | [set_up_bananapi_runtime_and_codegen.md](set_up_bananapi_runtime_and_codegen.md) |
+| **Phase 3** | Banana Pi BPI-F3 | `rsync`、板端 TVM Runtime、RVV MatMul `.so`、Processor、音訊推論 | [banana_pi_deployment.md](banana_pi_deployment.md) |
 
 **參考來源：** [930727fre/tvm_rvv_matmul_byoc](https://github.com/930727fre/tvm_rvv_matmul_byoc) 的 TVM v0.20.0 + `bananapi` BYOC 部署範例；本專題使用 `kiwipedia` backend，請先閱讀 [兩個版本與檔案名稱差異](docs/REFERENCE_COMPARISON.md)。這份參考來源不是本專題後期 O4/O5 最終程式的直接替代品。
 
