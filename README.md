@@ -90,8 +90,6 @@ Pythia O4 相較其 baseline 約 **53.05×**。實驗以 20 組 WikiText-103 固
 | `Failed to load symbol 'matmul'`、`dlopen` 失敗 | 檢查 `$KIWIPEDIA_MATMUL_SO`、`file libmatmul.so`；回第 4 步重新用 x86 `g++` 編譯 |
 | `No such file or directory: 'audio.wav'` | 必須在 `whisper-tiny/` 目錄執行、準備 `audio.wav` 並以 `ffprobe` 檢查 |
 | `WhisperProcessor`／Pillow 匯入失敗 | `python -m pip install -U pillow transformers sentencepiece`；如有 API 差異，需固定相容版本 |
-| 出現 `/home/lewis56/...` 舊路徑 | 優先設定 `KIWIPEDIA_MATMUL_SO`；用 `grep -RIn --exclude-dir=build '/home/lewis56' tvm/src whisper-tiny` 找出需要人工修改的內容 |
-| CMake 編譯記憶體不足 | 將 `cmake --build build --parallel "$(nproc)"` 改為 `--parallel 2` 或 `--parallel 4` |
 | 顯示 warning 但 `.so` 未生成 | 不可當作成功；確認編譯程式最後的錯誤訊息、模型依賴及目標編譯器 |
 
 
