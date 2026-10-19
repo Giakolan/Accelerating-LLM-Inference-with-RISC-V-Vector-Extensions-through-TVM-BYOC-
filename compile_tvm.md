@@ -189,13 +189,3 @@ PY
 ```
 
 這裡的檢查只代表 Host 的相關 TVM 功能已註冊，**不代表 RVV 編譯或板端推論已完成**。
-
-## 8. 主機端先跑一次模型（選用，但強烈建議）
-
-請依 [README Quick Start 第 7–10 步](../README.md#7-編譯-whisper-tiny-的三個-onnx-模型) 編譯及執行 Host x86 版本，先排除 ONNX／Processor／Runtime 問題。完成後再進入下一階段：[RISC-V 工具鏈](compile_riscv_toolchain.md)。
-
-## 關於參考專案使用 TVM v0.20.0
-
-[930727fre 的原始 `compile_tvm.md`](https://github.com/930727fre/tvm_rvv_matmul_byoc/blob/main/compile_tvm.md) 採 `git clone -b v0.20.0 --recursive https://github.com/apache/tvm tvm`。**那是 `bananapi` 舊版本重現路徑，不是本專題的 Kiwipedia 原始碼來源**。如果要獨立重現舊專案，請另建資料夾，並依其 C++ patch／CMake 模組建置；兩套 TVM 不要共用 `PYTHONPATH`、`build/` 或 `.so`。
-
-[← README](../README.md) · [下一步：RISC-V Toolchain →](compile_riscv_toolchain.md)
