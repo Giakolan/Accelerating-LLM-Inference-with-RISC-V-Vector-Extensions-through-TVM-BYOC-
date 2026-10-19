@@ -74,7 +74,7 @@ Pythia O4 相較其 baseline 約 **53.05×**。實驗以 20 組 WikiText-103 固
 
 | 階段 | 執行設備 | 建置內容 | 詳細教學 |
 | --- | --- | --- | --- |
-| **Phase 1** | x86 Ubuntu | 工具、Python、Git LFS、ONNX、TVM (Kiwipedia) 和 Host 環境變數 | [compile_tvm.md](compile_tvm.md) |
+| **Phase 1** | x86 Ubuntu | Python、Git LFS、ONNX、TVM (Kiwipedia) 和 Host 環境變數 | [compile_tvm.md](compile_tvm.md) |
 | **Phase 2A** | x86 Ubuntu | RISC-V GNU Linux Toolchain、sysroot、QEMU 正確性驗證 | [compile_riscv_toolchain.md](compile_riscv_toolchain.md) |
 | **Phase 2B** | x86 Ubuntu | Kiwipedia Runtime／Codegen、目標 LLVM triple、`fcompile`、三個 RISC-V `.so` | [set_up_bananapi_runtime_and_codegen.md](set_up_bananapi_runtime_and_codegen.md) |
 | **Phase 3** | Banana Pi BPI-F3 | `rsync`、板端 TVM Runtime、RVV MatMul `.so`、Processor、音訊推論 ||
