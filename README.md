@@ -38,11 +38,11 @@ flowchart TD
 - **推論流程改善：** 依音訊長度選用 15/30 秒 Encoder；保持 Processor、模型模組及 VM 常駐；對長音訊進行 Chunk 切分、重疊與邊界文字合併。
 - **Pythia：** 針對固定 16-token Forward Pass 以 Shape-tuned RVV Kernel 與 GCC Auto-vectorization 建立 Hybrid Dispatcher。**此測試不代表逐 token 生成效能。**
 
-## 2. Results (Reported)
+## 2. Results
 
 以下為原始專題報告所記載的結果，僅用於說明研究成果。執行時間可能受到模型版本、輸入資料、板子環境與初始化方式影響。
 
-### Whisper-tiny：11 秒 `jfk.flac`
+### Whisper-tiny：11 秒
 
 | 版本 | 核心改動 | End-to-end (s) |
 | --- | --- | ---: |
@@ -70,8 +70,6 @@ Pythia O4 相較其 baseline 約 **53.05×**。實驗以 20 組 WikiText-103 固
 
 ## 3.Start：Ubuntu → RISC-V Cross Compilation → Banana Pi BPI-F3
 
-本專案提供兩條清楚區分的路線：**Track A 在 x86 Ubuntu 上編譯與執行已公開的 Kiwipedia 範例**；**Track B 將有對應 RVV／Dynamic Shape 實作的版本交叉編譯並部署到 Banana Pi**。新手建議先完成 Track A，再操作 Track B；不能直接把 Track A 產生的 x86 `.so` 傳到板端。
-
 ### 三階段安裝地圖
 
 | 階段 | 執行設備 | 建置內容 | 詳細教學 |
@@ -80,8 +78,6 @@ Pythia O4 相較其 baseline 約 **53.05×**。實驗以 20 組 WikiText-103 固
 | **Phase 2A** | x86 Ubuntu | RISC-V GNU Linux Toolchain、sysroot、QEMU 正確性驗證 | [compile_riscv_toolchain.md](compile_riscv_toolchain.md) |
 | **Phase 2B** | x86 Ubuntu | Kiwipedia Runtime／Codegen、目標 LLVM triple、`fcompile`、三個 RISC-V `.so` | [set_up_bananapi_runtime_and_codegen.md](set_up_bananapi_runtime_and_codegen.md) |
 | **Phase 3** | Banana Pi BPI-F3 | `rsync`、板端 TVM Runtime、RVV MatMul `.so`、Processor、音訊推論 | [banana_pi_deployment.md](banana_pi_deployment.md) |
-
-
 
 ### 常見問題（Troubleshooting）
 
@@ -97,6 +93,6 @@ Pythia O4 相較其 baseline 約 **53.05×**。實驗以 20 組 WikiText-103 固
 | 出現 `/home/lewis56/...` 舊路徑 | 優先設定 `KIWIPEDIA_MATMUL_SO`；用 `grep -RIn --exclude-dir=build '/home/lewis56' tvm/src whisper-tiny` 找出需要人工修改的內容 |
 | CMake 編譯記憶體不足 | 將 `cmake --build build --parallel "$(nproc)"` 改為 `--parallel 2` 或 `--parallel 4` |
 | 顯示 warning 但 `.so` 未生成 | 不可當作成功；確認編譯程式最後的錯誤訊息、模型依賴及目標編譯器 |
-依據：專題報告 *Accelerating LLM Inference with RISC-V Vector Extensions through TVM BYOC*，以及 [930727fre/tvm_rvv_matmul_byoc](https://github.com/930727fre/tvm_rvv_matmul_byoc) 的歷史 TVM/BYOC 與 RISC-V 部署教學（版本差異見 [REFERENCE_COMPARISON](docs/REFERENCE_COMPARISON.md)）。主要技術參考包含 [Apache TVM](https://tvm.apache.org/)、[OpenAI Whisper](https://github.com/openai/whisper)、[whisper.cpp](https://github.com/ggml-org/whisper.cpp)、[Pythia](https://github.com/EleutherAI/pythia) 與 RISC-V Vector Extension。
 
-> **License：** 公開原始碼前，請先確認學長既有程式、TVM fork、模型權重及第三方依賴的授權條件；本文件範本不代替任何原始專案的授權聲明。
+
+
